@@ -32,6 +32,13 @@ class MainWindow(gtk.Window):
             # You should try running this command manually in an interactive shell
             # to see if it will work.
 
+            # `stty` is probably not included on Android devices; however --
+            # Stericson's BusyBox installer for Android will install this; see
+            # https://play.google.com/store/apps/details?id=stericson.busybox
+            #
+            # As of this writing, I do NOT recommend JRummy's busybox as it seems
+            # to be buggy.
+
             proc = Popen(["adb","shell","stty raw; screencap -p"], stdout=PIPE)
 
             # Perform blocking I/O
