@@ -1,7 +1,7 @@
 # android_screen_mirror
 Scripts to perform screen capture of Android devices
 
-3+ FPS possible!
+**3+ FPS possible!**
 
 View the source of the python script to see the requirements and
 to enact changes that may make it work better on your platform!
@@ -10,7 +10,7 @@ to enact changes that may make it work better on your platform!
 
 Android device requirements:
    * adb (Android device bridge) debug mode ENABLED
-   * (probably) should probably have (stericson's BusyBox)[https://play.google.com/store/apps/details?id=stericson.busybox] installed.
+   * (probably) should probably have [stericson's BusyBox](https://play.google.com/store/apps/details?id=stericson.busybox) installed.
 
 Computer (host) requirements:
    * `adb`
