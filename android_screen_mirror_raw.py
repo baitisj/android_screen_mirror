@@ -9,6 +9,7 @@ from subprocess import Popen, PIPE
 import gtk, gobject, threading, time
 from PIL import Image
 import numpy as np
+import zlib
 
 class MainWindow(gtk.Window):
 
@@ -41,13 +42,18 @@ class MainWindow(gtk.Window):
             # As of this writing, I do NOT recommend JRummy's busybox as it seems
             # to be buggy.
 
-            proc = Popen(["adb","shell","stty raw; screencap"], stdout=PIPE)
+            # Here, I experimented with gzip compression settings, and I found 3 to be most optimal
+            # in terms of framerate over USB.
+            proc = Popen(["adb","shell","stty raw; screencap | gzip -c -3"], stdout=PIPE)
 
             # Perform blocking I/O
-            raw = proc.communicate()[0]
+            gzdata = proc.communicate()[0]
 
-            # TODO 
-            # This should work but hasn't been tested
+            # Decompress the data stream
+            raw = zlib.decompress(gzdata, 15 + 32)
+
+            # If you want, you can use numpy to transform the data.
+            # For example, below, I convert RGBA to BGRA.
             # See http://stackoverflow.com/questions/7906814/converting-pil-image-to-gtk-pixbuf
 
             # Load the raw image in, swap the channels around, and use the Image
