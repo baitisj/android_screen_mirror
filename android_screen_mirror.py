@@ -26,7 +26,7 @@ class MainWindow(gtk.Window):
             # Ideally, your adb tools would support `adb exec-out`
             # However, mine does not
             # If `adb exec-out` works on your platform, change the following command to:
-            # proc = Popen(["adb","exec-out","screencap -p"], stdout=PIPE)
+            proc = Popen(["adb","exec-out","screencap -p"], stdout=PIPE)
 
             # Another potential issue: your device may not support 'stty raw'
             # You should try running this command manually in an interactive shell
@@ -39,7 +39,7 @@ class MainWindow(gtk.Window):
             # As of this writing, I do NOT recommend JRummy's busybox as it seems
             # to be buggy.
 
-            proc = Popen(["adb","shell","stty raw; screencap -p"], stdout=PIPE)
+            #proc = Popen(["adb","shell","stty raw; screencap -p"], stdout=PIPE)
 
             # Perform blocking I/O
             png = proc.communicate()[0]
