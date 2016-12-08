@@ -51,13 +51,16 @@ class MainWindow(gtk.Window):
             # See http://stackoverflow.com/questions/7906814/converting-pil-image-to-gtk-pixbuf
 
             # Load the raw image in, swap the channels around, and use the Image
-            im=Image.frombuffer('RGBA',(1280,800),raw,"raw",mode,0,1)
-            data=np.array(im)
-            red,green,blue,alpha=data.T
-            data=np.array([blue,green,red,alpha])
-            data=data.transpose()
+            #im=Image.frombuffer('RGBA',(1280,800),raw,"raw","RGBA",0,1)
+            #data=np.array(im)
 
-            pic=gtk.gdk.pixbuf_new_from_array(data,gtk.gdk.COLORSPACE_RGBA,8)
+            #red,green,blue,alpha=data.T
+            #data=np.array([blue,green,red,alpha])
+            #data=data.transpose()
+
+            #pic=gtk.gdk.pixbuf_new_from_array(data,gtk.gdk.COLORSPACE_RGB,8)
+
+            pic=gtk.gdk.pixbuf_new_from_data(raw,gtk.gdk.COLORSPACE_RGB,True,8,1280,800,1280*4)
 
             self.img.set_from_pixbuf(pic)
 
